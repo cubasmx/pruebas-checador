@@ -1,0 +1,6 @@
+node_modules/
+.env
+database.sqlite
+app.log
+__pycache__/
+.venv/

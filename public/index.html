@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checador Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-fingerprint"></i>
+                <h2>Checador</h2>
+            </div>
+            <nav>
+                <a href="#" class="nav-item active" id="nav-dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                <a href="#" class="nav-item" id="nav-settings"><i class="fa-solid fa-gear"></i> Configuración</a>
+            </nav>
+            <div class="sync-action">
+                <button id="btn-sync" class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Sincronizar Datos</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Dashboard View -->
+            <section id="view-dashboard" class="view active">
+                <header>
+                    <div class="header-titles">
+                        <h1>Panel de Asistencia</h1>
+                        <p>Visualiza y filtra los registros del personal en tiempo real.</p>
+                    </div>
+                </header>
+
+                <div class="filters glass-panel">
+                    <div class="filter-group">
+                        <label>Buscar Empleado</label>
+                        <input type="text" id="filter-name" placeholder="Ej. Juan Perez">
+                    </div>
+                    <div class="filter-group">
+                        <label>Rango de Fechas</label>
+                        <select id="filter-date">
+                            <option value="today">Día de hoy</option>
+                            <option value="week">Esta semana</option>
+                            <option value="all" selected>Todos los registros</option>
+                        </select>
+                    </div>
+                    <button id="btn-search" class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+                </div>
+
+                <div class="table-container glass-panel">
+                    <table id="attendance-table">
+                        <thead>
+                            <tr>
+                                <th>Empleado</th>
+                                <th>Fecha y Hora</th>
+                                <th>Estado Original</th>
+                                <th>Estatus (Calculado)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data populated by JS -->
+                        </tbody>
+                    </table>
+                    <div class="loading-state" id="table-loading" style="display: none;">Cargando registros...</div>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section id="view-settings" class="view" style="display: none;">
+                <header>
+                    <div class="header-titles">
+                        <h1>Configuración Oficial</h1>
+                        <p>Personaliza las reglas de asistencia y apariencia visual.</p>
+                    </div>
+                </header>
+
+                <div class="settings-form glass-panel">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Horario Oficial de Entrada</h3>
+                            <p>Hora límite para considerar una asistencia como "a tiempo". Las entradas después de esta hora se considerarán "Retardo".</p>
+                        </div>
+                        <input type="time" id="setting-time" value="09:00">
+                    </div>
+                    
+                    <div class="color-settings">
+                        <h3>Código de Colores</h3>
+                        <div class="color-grid">
+                            <div class="color-item">
+                                <label>Asistencia (A Tiempo)</label>
+                                <input type="color" id="setting-color-ontime" value="#10b981">
+                            </div>
+                            <div class="color-item">
+                                <label>Retardo</label>
+                                <input type="color" id="setting-color-late" value="#f59e0b">
+                            </div>
+                            <div class="color-item">
+                                <label>Falta</label>
+                                <input type="color" id="setting-color-absent" value="#ef4444">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-actions">
+                        <button id="btn-save-settings" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">Notificación</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
